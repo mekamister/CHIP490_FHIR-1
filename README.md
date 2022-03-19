@@ -1,5 +1,8 @@
+<img src="https://github.com/jiao826/CHIP490_FHIR/blob/cebb28fc2c55b8454439906ca221d3a1bafcdffc/solar1.jpg" width="980"/>
+
 # CHIP490_FHIR
 This is a repository for the coursework and assignments associated with CHIP 490_FHIR_Spring2022 at UNC.
+
 ## Hi there 👋, I`m Jiao Li :smiley:
 I`m Jiao Li and currently an MPS student in Biomedical and Health Informatics in the CHIP program. I work full-time at a pharmaceutical company, focusing on digital biomarkers and digital health solution development. Previously, I was a Business Insight consultant, helping clients from various industries find insights from data and build data utilization platforms. I am a big fan of nature and Samoyed. 
 * Skills: Pharmaceutical Regulatory Science / Digital Biomarkers / Business Insight / Project Management
