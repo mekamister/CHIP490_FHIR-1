@@ -1,0 +1,168 @@
+#HTML
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/fhirclient/build/fhir-client.js"></script>
+
+<pre id='pre'></pre>
+
+<table id="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Last Name</th>
+      <th>First Name</th>
+     </tr>
+  </thead>
+  <button id="btnAddVivianWest">Add Vivian West</button>
+  <button id="btnRefreshWest">Refresh West</button>
+  <br />
+  <tbody id="patients">
+    
+  </tbody>
+</table>
+
+
+#CSS
+body {
+  font-family: Helvetica;
+}
+
+#json {
+  width:100%;
+  height:200px;
+}
+
+#inputarea {
+  display:inline-block;
+  vertical-align:top;
+  width:45%;
+  margin:2%;
+}
+
+#table {
+  width:45%;
+  display:inline-block;  
+  vertical-align:top;
+}
+
+#table tr td, #table tr th {
+  padding:2px 5px;
+  border:1px solid black;
+}
+
+
+#JavaScript
+
+function handleExample(data) {
+	console.log(data);
+}
+function runExample() {
+  client.request("Patient").then(handleExample).catch(console.error);
+}
+
+const FHIRURL = "https://r4.smarthealthit.org";
+const client = FHIR.client(FHIRURL);
+console.clear();
+runExample();
+
+
+function updateWest(id) {
+  var fn = prompt("New First Name?");
+  if (typeof fn!="undefined" && !!fn && fn!="") {
+    var id = $(this)[0].id;
+    var json = {
+    	//// Note what happens in the console if we leave out this id:
+    	"id": id,
+      "resourceType": "Patient",
+      "name": {
+        "given": [fn],
+        "family": "West"
+      },
+    };
+
+		$.ajax({
+    	//// PUT is used to UPDATE
+      type: "PUT",
+      url: FHIRURL+'/Patient/'+id,
+      success: function (data) {
+        showWest();
+      },
+      data: JSON.stringify(json),
+      datatype: 'json',
+      contentType: 'application/json+fhir;charset=utf-8'
+    });
+  }
+}
+
+function deleteVivianWest(id) {
+  var id = $(this)[0].id;
+  $.ajax({
+    type: "DELETE",
+    url: FHIRURL+'/Patient/'+id,
+    success: function (data) {
+    	showWest();
+    },
+  });
+}
+
+function addVivianWest() {
+  var json = {
+    "resourceType": "Patient",
+    "name": {
+      "given": ["James"],
+      "family": "West"
+    },
+  };
+
+  $.ajax({
+  	//// POST is used to CREATE
+    type: "POST",
+    url: FHIRURL+'/Patient',
+    headers: {
+  //    "Authorization":"Bearer "+$scope.token
+    },
+    data: JSON.stringify(json),
+    success: function (data) {
+    	alert("Request submitted. Processing...");
+		},
+    error: function(er) {
+      console.log(er);
+    },
+    datatype: 'json',
+    contentType: 'application/json+fhir;charset=utf-8'
+  });
+}
+
+
+function handleData(data) {
+  $("#patients").html("");
+	for (var d in data.entry) {
+  	try {
+      console.log(data.entry[d]);
+      var tr = $("<tr>");
+      tr.append($("<td>").html(data.entry[d].resource.id));
+      tr.append($("<td>").html(data.entry[d].resource.name[0].family));
+      tr.append($("<td>").html(data.entry[d].resource.name[0].given[0]));
+      var a = $("<a>").attr("href","javascript:;").html("[X]").on("click", deleteVivianWest.bind({id:data.entry[d].resource.id}) );
+      tr.append($("<td>").append(a));
+      var r = $("<a>").attr("href","javascript:;").html("[R]").on("click", updateWest.bind({id:data.entry[d].resource.id}) );
+      tr.append($("<td>").append(r));
+      $("#patients").append(tr);
+    } catch(er) {
+    	// We're just putting it in a try-block in case there's an error with the data.
+      // The server takes some time to process these changes
+      // , so deletes and adds may not be properly reflected for a few minutes.
+    }
+  }
+}
+
+function showWest() {
+  client.request("Patient?name=West").then(handleData).catch(console.error);
+}
+
+// Note: this URL requires no authentication
+$("#btnRefreshWest").on("click", showWest);
+$("#btnAddVivianWest").on("click", addVivianWest);
+showWest();
