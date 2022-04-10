@@ -1,12 +1,12 @@
 ## Group memebers
-Ashley Cagir:blossom:, Jiao Li:cherry_blossom:, Timeka Mister:deciduous_tree:
+Ashley Cagir:blossom:, Jiao Li:cherry_blossom:, Timeka Mister:palm_tree:
 
 ## Audience
 U.S. Adults suffering from mental health issues due to COVID
 
 ## Problem and need
 * The COVID-19 pandemic may have brought many changes to how people live, and with it, at times, uncertainty, altered daily routines, financial pressures and social isolation. People may worry about getting sick, how long the pandemic will last, whether our job will be affected and what the future will bring. Information overload, rumors and misinformation can make our life feel out of control and make it unclear what to do.
-* During the COVID-19 pandemic, we may experience stress, anxiety, fear, sadness and loneliness. And mental health disorders, including anxiety and depression, can worsen.
+* During the COVID-19 pandemic, we may experience stress, anxiety, fear, sadness and loneliness, and mental health disorders, including anxiety and depression, can worsen.
 * Surveys show a major increase in the number of U.S. adults who report symptoms of stress, anxiety, depression and insomnia during the pandemic, compared with surveys before the pandemic. Some people have increased their use of alcohol or drugs, thinking that can help them cope with their fears about the pandemic. In reality, using these substances can worsen anxiety and depression.
 * For all of these reasons, it's important to manage our own mental health and get the care when needed.
 * Studies show that aerobic exercise can be used to improve mental health (e.g., anxiety). We want to use this concept to help improve people`s mental health due to COVID.
